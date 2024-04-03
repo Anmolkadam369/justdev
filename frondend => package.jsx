@@ -98,7 +98,7 @@ function Package() {
       <h2>Choose a <span>Right plan</span> for you</h2>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae quos nemo totam unde quaerat odit facere.</p>
 
-      {cardDetails.length!=0 && 
+       
       
       <div className="package">
 
@@ -117,7 +117,8 @@ function Package() {
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             <FontAwesomeIcon icon={faCheckSquare} style={{ marginRight: '15px', color: 'black', marginTop: '5px' }} /><p>20 GB cloud storage Templates</p>
           </div>
-          <h3>US {cardDetails[0].name} / month</h3>
+          {cardDetails.length!=0 &&
+          <h3>US {cardDetails[0].name} / month</h3>}
           <button>SELECT</button>
         </div>
         <div className=" package-card-2">
@@ -135,7 +136,8 @@ function Package() {
             <FontAwesomeIcon icon={faCheckSquare} style={{ marginRight: '15px', color: 'white', marginTop: '5px' }} /><p>Ideal for small teams </p>
           </div>
 
-          <h3>US {cardDetails[1].name} / month</h3>
+          {cardDetails.length!=0 &&
+          <h3>US {cardDetails[1].name} / month</h3>}
 
           
           <button onClick={handlePayment}>SELECT</button>
@@ -156,11 +158,12 @@ function Package() {
             <FontAwesomeIcon icon={faCheckSquare} style={{ marginRight: '15px', color: 'black', marginTop: '5px' }} /><p>Ideal for larger teams </p>
 
           </div>
-          <h3>US {cardDetails[0].name} / month</h3>
+          {cardDetails.length!=0 &&
+          <h3>US {cardDetails[0].name} / month</h3>}
 
           <button>FULL ACCESS</button>
         </div>
-      </div>}
+      </div>
     </div>
   );
 }
