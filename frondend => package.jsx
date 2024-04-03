@@ -21,7 +21,7 @@ function Package() {
     name: "The Road to be taken",
     author: "C.S Tylor",
     img: "https://th.bing.com/th?id=OIP.O8X2cM_d8XTou4d3_YlbgAHaLH&w=204&h=306&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
-    price: 500,
+    price: 1500,
   });
   const initPayment = (data) => {
     const options = {
@@ -49,14 +49,14 @@ function Package() {
     rzp1.open();
   }
 
-  const handlePayment = async () => {
+  const handlePayment = async (price) => {
     try {
       if (jwtToken) {
         console.log(jwtToken);
         console.log("order payment")
         const orderUrl = 'https://the-salt-legal-backend.onrender.com/orders';
         const { data } = await axios.post(orderUrl, {
-          amount: book.price
+          amount: price
         });
         console.log("orderData", data);
         initPayment(data.data);
@@ -118,8 +118,12 @@ function Package() {
             <FontAwesomeIcon icon={faCheckSquare} style={{ marginRight: '15px', color: 'black', marginTop: '5px' }} /><p>20 GB cloud storage Templates</p>
           </div>
           {cardDetails.length!=0 &&
-          <h3>US {cardDetails[0].name} / month</h3>}
-          <button>SELECT</button>
+          <div>
+          <h3>Title {cardDetails[0].name}</h3>
+          <h3>Price {cardDetails[0].phone.substring(2, 5)} / month</h3>
+          </div>
+          }
+          <button onClick={()=>handlePayment(cardDetails[0].phone.substring(2, 5))}>SELECT</button>
         </div>
         <div className=" package-card-2">
           <h2>5 Users</h2>
@@ -137,10 +141,14 @@ function Package() {
           </div>
 
           {cardDetails.length!=0 &&
-          <h3>US {cardDetails[1].name} / month</h3>}
+          <div>
+          <h3>Title {cardDetails[1].name}</h3>
+          <h3>Price {cardDetails[1].phone.substring(5, 8)}/ month</h3>
+          </div>
+          }
 
           
-          <button onClick={handlePayment}>SELECT</button>
+          <button onClick={()=>handlePayment(cardDetails[1].phone.substring(5, 8))}>SELECT</button>
 
         </div>
         <div className="package-card">
@@ -159,9 +167,13 @@ function Package() {
 
           </div>
           {cardDetails.length!=0 &&
-          <h3>US {cardDetails[0].name} / month</h3>}
+          <div>
+          <h3>Title {cardDetails[0].name}</h3>
+          <h3>Price {cardDetails[0].phone.substring(0, 3)}/ month</h3>
+          </div>
+          }
 
-          <button>FULL ACCESS</button>
+          <button onClick={()=>handlePayment(cardDetails[0].phone.substring(0, 3))}>FULL ACCESS</button>
         </div>
       </div>
     </div>
