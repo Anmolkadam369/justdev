@@ -81,11 +81,11 @@ function Package() {
       const data = await response.json();
       console.log("data",data);
       setCardDetails(data.data);
+      console.log("carddetails",cardDetails)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
-  console.log("carddetails",cardDetails)
 
   useEffect(() => {
     getCardDetails();
@@ -98,6 +98,8 @@ function Package() {
       <h2>Choose a <span>Right plan</span> for you</h2>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae quos nemo totam unde quaerat odit facere.</p>
 
+      {cardDetails.length!=0 && 
+      
       <div className="package">
 
         <div className="package-card">
@@ -158,7 +160,7 @@ function Package() {
 
           <button>FULL ACCESS</button>
         </div>
-      </div>
+      </div>}
     </div>
   );
 }
