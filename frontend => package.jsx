@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { useRecoilValue,useRecoilState } from 'recoil';
-import { jwtTokenState ,paidUserState} from '../../auth/atoms';
+import { jwtTokenState } from '../../auth/atoms';
 
 
 
@@ -16,7 +16,6 @@ function Package() {
 
   
   const navigate = useNavigate();
-  const [isPaidUser, setIsPaidUser] = useRecoilState(paidUserState);
   const jwtToken = useRecoilValue(jwtTokenState);
   const [cardDetails, setCardDetails] = useState([])
   const [book, setbook] = useState({
@@ -37,9 +36,6 @@ function Package() {
       handler: async (response) => {
         try {
           const verifyUrl = 'https://the-salt-legal-backend.onrender.com/verify';
-          sessionStorage.setItem('paidUser', true);
-          setIsPaidUser(true);
-          console.log("i am paid user", paidUserState)
           navigate('/document')
           const { data } = await axios.post(verifyUrl, response);
           console.log("verifyData", data);
