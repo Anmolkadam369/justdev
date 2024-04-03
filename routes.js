@@ -8,7 +8,7 @@ const Razorpay = require("razorpay");
 const crypto = require("crypto");
 const userController = require("../controllers/userController.js");
 const categoryController = require("../controllers/categoryController.js")
-
+const paymentCardController = require("../controllers/paymentCardController.js");
 const subCategoryController = require("../controllers/subCategoryController.js")
 
 //USER 
@@ -33,6 +33,11 @@ router.delete("/delete/subcategory/:subCategoryId", subCategoryController.delete
 //contact Us
 router.post("/contactUs", userController.contactUs)
 router.get('/getContactUs', userController.getContactUs)
+
+//payment Cards
+router.post("/paymentCard", paymentCardController.createPaymentCard)
+router.get("/getPaymentCard", paymentCardController.getCard);
+
 
 // Payment route
 
